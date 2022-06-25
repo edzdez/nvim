@@ -16,14 +16,17 @@ require('config.colorscheme').setup({
     base0C = '#89ddff',
     base0D = '#82aaff',
     base0E = '#c792ea',
-    base0F = '#ff5370',
+    base0F = '#f07178',
 })
 
-vim.cmd('highlight! link TSParameter TSAnnotation')
+-- vim.cmd('highlight! link TSParameter TSAnnotation')
+vim.cmd('highlight! link TSParameter TSVariable')
 vim.cmd('highlight! link TSOperator TSStringEscape')
 vim.cmd('highlight! link TSPunctDelimiter TSOperator')
 vim.cmd('highlight! link TSNamespace TSType')
 vim.cmd('highlight! link TSFuncMacro TSFunction')
+vim.cmd('highlight! link TSException TSKeywordOperator')
+vim.cmd('highlight! link TSCharacter TSString')
 
 vim.cmd('highlight! DiagnosticError ctermfg=1 guifg=#ff5370')
 vim.cmd('highlight! DiagnosticWarn  ctermfg=3 guifg=#ffcb6b')
@@ -31,3 +34,4 @@ vim.cmd('highlight! DiagnosticInfo  ctermfg=4 guifg=#82aaff')
 vim.cmd('highlight! link DiagnosticUnderlineError DiagnosticError')
 vim.cmd('highlight! link DiagnosticUnderlineWarn DiagnosticWarn')
 vim.cmd('highlight! link DiagnosticUnderlineInfo DiagnosticInfo')
+vim.cmd('highlight! link TSError DiagnosticInfo')

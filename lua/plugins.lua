@@ -8,7 +8,15 @@ return require("packer").startup(function()
     -- Base 16 themes
     use 'RRethy/nvim-base16'
     -- Material themes
-    use { 'marko-cerovac/material.nvim' }
+    use {
+        'kaicataldo/material.vim',
+        config = function()
+            -- cmd('set termguicolors')
+
+            vim.g.material_terminal_italics = 1
+            vim.g.material_theme_style = 'community-darker'
+        end
+    }
 
     -- nvim tree
     use 'kyazdani42/nvim-web-devicons'
@@ -161,7 +169,10 @@ return require("packer").startup(function()
     --     end
     -- }
 
-    use { 'Yggdroot/indentLine' }
+    use {
+        'Yggdroot/indentLine',
+    }
+
     use { 'vimwiki/vimwiki' }
 
     use {
@@ -176,6 +187,83 @@ return require("packer").startup(function()
             vim.api.nvim_set_keymap('n', ' cd',
                 [[<Cmd>:lua require'popui.diagnostics-navigator'()<CR>]],
                 kopts)
+        end
+    }
+
+    use {
+        "catppuccin/nvim",
+        as = "catppuccin",
+        config = function()
+            require"catppuccin".setup {
+                transparent_background = false,
+                term_colors = false,
+                styles = {
+                	comments = "italic",
+                	conditionals = "italic",
+                	loops = "NONE",
+                	functions = "NONE",
+                	keywords = "NONE",
+                	strings = "NONE",
+                	variables = "NONE",
+                	numbers = "NONE",
+                	booleans = "NONE",
+                	properties = "NONE",
+                	types = "NONE",
+                	operators = "NONE",
+                },
+                integrations = {
+                	treesitter = true,
+                	native_lsp = {
+                		enabled = true,
+                		virtual_text = {
+                			errors = "italic",
+                			hints = "italic",
+                			warnings = "italic",
+                			information = "italic",
+                		},
+                		underlines = {
+                			errors = "underline",
+                			hints = "underline",
+                			warnings = "underline",
+                			information = "underline",
+                		},
+                	},
+                    coc_nvim = false,
+                	lsp_trouble = true,
+                	cmp = true,
+                	lsp_saga = false,
+                	gitgutter = true,
+                	gitsigns = true,
+                	telescope = true,
+                	nvimtree = {
+                		enabled = true,
+                		show_root = true,
+                		transparent_panel = false,
+                	},
+                	neotree = {
+                		enabled = false,
+                		show_root = false,
+                		transparent_panel = false,
+                	},
+                	which_key = false,
+                	indent_blankline = {
+                		enabled = true,
+                		colored_indent_levels = false,
+                	},
+                	dashboard = true,
+                	neogit = false,
+                	vim_sneak = false,
+                	fern = false,
+                	barbar = false,
+                	bufferline = true,
+                	markdown = true,
+                	lightspeed = false,
+                	ts_rainbow = false,
+                	hop = false,
+                	notify = true,
+                	telekasten = true,
+                	symbols_outline = true,
+                }}
         end
     }
 end)

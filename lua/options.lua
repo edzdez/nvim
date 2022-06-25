@@ -50,6 +50,25 @@ opt.pumheight = 10
 
 opt.updatetime = 250
 
+cmd('set concealcursor-=in')
+
+g.vimwiki_list = {
+    {
+        path_html = '~/vimwiki/html',
+        path = '~/vimwiki/',
+        syntax = 'markdown',
+        ext = '.md',
+        custom_wiki2html = '~/.local/bin/wiki2html.sh',
+        template_path = "~/.local/share/nvim/site/pack/packer/start/vimwiki/autoload/vimwiki",
+    }
+}
+
+g.indentLine_concealcursor = ''
+
+g.powerline_loaded = 1
+
 -- cmd('colorscheme base16-material-darker')
-cmd('colorscheme material-darker')
+-- cmd('colorscheme material-darker')
 -- cmd('colorscheme material')
+vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+vim.cmd[[colorscheme catppuccin]]

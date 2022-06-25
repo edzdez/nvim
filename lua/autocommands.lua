@@ -1,5 +1,5 @@
 vim.api.nvim_create_autocmd({"BufWritePre"}, {
-    pattern = { "*.rs", "*.cpp", "*.h", "*.hpp" },
+    pattern = { "*.rs", "*.cpp", "*.h", "*.hpp", "*.zig" },
     -- callback = function() vim.lsp.buf.formatting_sync(nil, 200) end,
     command = "Neoformat",
 })
