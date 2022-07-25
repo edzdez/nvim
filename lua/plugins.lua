@@ -191,6 +191,8 @@ return require("packer").startup(function()
         end
     }
 
+    use { 'igankevich/mesonic' }
+
     use {
         "catppuccin/nvim",
         as = "catppuccin",
