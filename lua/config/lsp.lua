@@ -43,7 +43,13 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 
 
-  require "lsp_signature".on_attach()
+  require "lsp_signature".on_attach({
+    bind = true, -- This is mandatory, otherwise border config won't get registered.
+    handler_opts = {
+        border = "rounded"
+    },
+    toggle_key = "<C-K>",
+  }, bufnr)
 
   if client.resolved_capabilities.document_highlight then
     vim.cmd([[
@@ -61,7 +67,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'tsserver', 'racket_langserver', 'clojure_lsp', 'ocamllsp', 'zls' }
+local servers = { 'pyright', 'tsserver', 'racket_langserver', 'clojure_lsp', 'ocamllsp', 'zls', 'hls', 'fsautocomplete' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = on_attach,

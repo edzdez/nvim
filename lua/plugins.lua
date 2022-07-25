@@ -62,6 +62,7 @@ return require("packer").startup(function()
     use { "neovim/nvim-lspconfig", after = "cmp-nvim-lsp", config = [[require('config.lsp')]] }
     use { 'p00f/clangd_extensions.nvim' }
     use { 'simrat39/rust-tools.nvim' }
+    use { 'kovisoft/slimv' }
 
     use { 'nvim-lua/plenary.nvim' }
     use { 'mfussenegger/nvim-dap' }
