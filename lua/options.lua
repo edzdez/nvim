@@ -4,6 +4,7 @@ local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
 
 g.mapleader = " "
+g.maplocalleader = "\\"
 
 opt.expandtab = true
 opt.smarttab = true
@@ -70,5 +71,6 @@ g.powerline_loaded = 1
 -- cmd('colorscheme base16-material-darker')
 -- cmd('colorscheme material-darker')
 -- cmd('colorscheme material')
-vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-vim.cmd[[colorscheme catppuccin]]
+vim.cmd[[colorscheme base16-tomorrow-night]]
+-- vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+-- vim.cmd[[colorscheme catppuccin]]

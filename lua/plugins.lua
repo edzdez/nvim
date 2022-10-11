@@ -71,6 +71,8 @@ return require("packer").startup(function()
     use { 'nvim-treesitter/playground' }
     use { "ray-x/lsp_signature.nvim" }
 
+    use { 'Olical/conjure' }
+
     -- Auto format tools
     use({ "sbdchd/neoformat", cmd = { "Neoformat" } })
 
