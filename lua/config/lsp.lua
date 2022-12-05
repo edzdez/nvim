@@ -51,7 +51,7 @@ local on_attach = function(client, bufnr)
     toggle_key = "<C-K>",
   }, bufnr)
 
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     vim.cmd([[
       hi! link LspReferenceRead Visual
       hi! link LspReferenceText Visual
@@ -67,13 +67,13 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'tsserver', 'racket_langserver', 'clojure_lsp', 'ocamllsp', 'zls', 'hls', 'fsautocomplete', 'elixirls' }
+local servers = { 'pyright', 'tsserver', 'racket_langserver', 'clojure_lsp', 'zls', 'hls', 'fsautocomplete', 'elixirls', 'ocamllsp' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = on_attach,
     flags = {
       -- This will be the default in neovim 0.7+
-      debounce_text_changes = 150,
+      -- debounce_text_changes = 150,
     }
   }
 end

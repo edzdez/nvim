@@ -3,12 +3,12 @@ local cmp = require'cmp'
 local lspkind = require'lspkind'
 
 cmp.setup({
-  snippet = {
-    expand = function(args)
-      -- For `ultisnips` user.
-      vim.fn["UltiSnips#Anon"](args.body)
-    end,
-  },
+--   snippet = {
+--     expand = function(args)
+--       -- For `ultisnips` user.
+--       vim.fn["UltiSnips#Anon"](args.body)
+--     end,
+--   },
   mapping = cmp.mapping.preset.insert({
           ['<Tab>'] = function(fallback)
             if cmp.visible() then
@@ -41,11 +41,11 @@ cmp.setup({
   },
   completion = {
     keyword_length = 1,
-    completeopt = "menu,noselect"
+    completeopt = "menu,menuone,noselect"
   },
-  view = {
-    entries = 'custom',
-  },
+--   view = {
+--     entries = 'custom',
+--   },
   formatting = {
     format = lspkind.cmp_format({
       mode = "symbol_text",
@@ -56,7 +56,7 @@ cmp.setup({
         path = "[Path]",
         buffer = "[Buffer]",
         emoji = "[Emoji]",
-	      omni = "[Omni]",
+	    omni = "[Omni]",
       }),
     }),
   },
