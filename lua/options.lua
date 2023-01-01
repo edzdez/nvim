@@ -74,3 +74,4 @@ g.powerline_loaded = 1
 vim.cmd[[colorscheme base16-tomorrow-night]]
 -- vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
 -- vim.cmd[[colorscheme catppuccin]]
+vim.cmd[[let g:UltiSnipsExpandTrigger = '<c-j>']]
