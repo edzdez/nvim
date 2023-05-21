@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/ethan/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
+  ["clangd_extensions.nvim"] = {
+    loaded = true,
+    path = "/home/ethan/.local/share/nvim/site/pack/packer/start/clangd_extensions.nvim",
+    url = "https://github.com/p00f/clangd_extensions.nvim"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/ethan/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -100,6 +105,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ethan/.local/share/nvim/site/pack/packer/start/indentLine",
     url = "https://github.com/Yggdroot/indentLine"
+  },
+  ["inlay-hints.nvim"] = {
+    loaded = true,
+    path = "/home/ethan/.local/share/nvim/site/pack/packer/start/inlay-hints.nvim",
+    url = "https://github.com/simrat39/inlay-hints.nvim"
   },
   ["lsp-colors.nvim"] = {
     loaded = true,
@@ -184,6 +194,11 @@ _G.packer_plugins = {
     path = "/home/ethan/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["rust-tools.nvim"] = {
+    loaded = true,
+    path = "/home/ethan/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
+    url = "https://github.com/simrat39/rust-tools.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/ethan/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -257,8 +272,8 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au VimEnter * ++once lua require("packer.load")({'whitespace.nvim', 'vim-sandwich'}, { event = "VimEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'delimitMate'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au VimEnter * ++once lua require("packer.load")({'vim-sandwich', 'whitespace.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 

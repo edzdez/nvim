@@ -31,14 +31,14 @@ lsp.set_preferences({
     }
 })
 
-lsp.on_attach(function(client, bufnr)
+function attach(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
 
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
 
-  vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+  vim.keymap.set("n", "<leader>K", function() vim.lsp.buf.hover() end, opts)
   vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
 
   vim.keymap.set("i", "<C-k>", function() vim.lsp.buf.signature_help() end, opts)
@@ -54,7 +54,9 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-end)
+end
+
+lsp.on_attach(attach)
 
 require "lsp_signature".on_attach({
   bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -64,7 +66,32 @@ require "lsp_signature".on_attach({
   toggle_key = "<C-K>",
 }, bufnr)
 
+lsp.skip_server_setup({'rust_analyzer', 'clangd'})
+
 lsp.setup()
+
+local rust_tools = require('rust-tools')
+rust_tools.setup({
+  tools = {
+    reload_workspace_from_cargo_toml = true,
+    inlay_hints = {
+      auto = true,
+      only_current_line = false,
+      show_parameter_hints = true,
+      highlight = "Comment",
+    },
+  },
+  server = {
+    on_attach = attach,
+    standalone = true
+  }
+})
+
+require('clangd_extensions').setup {
+  server = {
+    on_attach = attach
+  }
+}
 
 vim.diagnostic.config({
     virtual_text = true

@@ -83,6 +83,9 @@ return require('packer').startup(function(use)
   }
   use {'folke/lsp-colors.nvim'}
   use { "ray-x/lsp_signature.nvim" }
+  use {'simrat39/rust-tools.nvim'}
+  use {'simrat39/inlay-hints.nvim'}
+  use {'p00f/clangd_extensions.nvim'}
 
   -- Auto format tools
   use({ "sbdchd/neoformat", cmd = { "Neoformat" } })
@@ -113,7 +116,7 @@ return require('packer').startup(function(use)
   -- Plugin to manipulate character pairs quickly
   use({"machakann/vim-sandwich", event = "VimEnter"})
 
-  -- Bufferline
+  -- lualine
   use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
 
   -- auto-close pairs
