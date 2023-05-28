@@ -12,4 +12,5 @@ require("nvim-tree").setup({
 })
 
 
-vim.api.nvim_set_keymap('n', '<leader>bt', [[NvimTreeToggle<CR>]], {})
+local kopts = {noremap = true, silent = true}
+vim.api.nvim_set_keymap('n', '<leader>ft', [[<Cmd>NvimTreeToggle<CR>]], kopts)
