@@ -95,8 +95,12 @@ return require('packer').startup(function(use)
   use {'simrat39/inlay-hints.nvim'}
   use {'p00f/clangd_extensions.nvim'}
 
+  -- error lens
+  use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
+
   -- Auto format tools
   use({ "sbdchd/neoformat", cmd = { "Neoformat" } })
+  use { 'mhartington/formatter.nvim' }
 
   -- show and trim trailing whitespaces
   use {'jdhao/whitespace.nvim', event = 'VimEnter'}
