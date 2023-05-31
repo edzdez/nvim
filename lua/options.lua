@@ -54,6 +54,10 @@ opt.swapfile = false
 opt.undofile = true
 opt.backup = false
 
+-- disable netrw for nvimtree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- vimwiki
 g.vimwiki_list = {
     {

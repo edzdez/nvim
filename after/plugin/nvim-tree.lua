@@ -9,8 +9,11 @@ require("nvim-tree").setup({
   filters = {
     dotfiles = true,
   },
+  disable_netrw = true,
+  hijack_netrw = true,
+  hijack_unnamed_buffer_when_opening = true,
 })
 
 
 local kopts = {noremap = true, silent = true}
-vim.api.nvim_set_keymap('n', '<leader>ft', [[<Cmd>NvimTreeToggle<CR>]], kopts)
+vim.api.nvim_set_keymap('n', '<leader>fe', [[<Cmd>NvimTreeToggle<CR>]], kopts)
