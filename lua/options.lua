@@ -17,8 +17,9 @@ opt.mouse = "a"
 opt.signcolumn = "yes"
 opt.pumheight = 10
 opt.updatetime = 250
-cmd('set concealcursor-=in')
-indentLine_concealcursor = ''
+-- these should be in after/plugin/indentline.lua
+-- vim.opt.concealcursor = "nc" -- don't conceal when cursor is on line in insert mode
+-- vim.cmd("let g:indentLine_fileTypeExclude = ['markdown']") -- indentline don't conceal!
 g.powerline_loaded = 1 -- necessary to get powerline to stop screaming at me
 
 -- tabs

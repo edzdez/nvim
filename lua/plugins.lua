@@ -138,7 +138,8 @@ return require('packer').startup(function(use)
   use {'vimwiki/vimwiki'}
 
   -- indentline
-  use {'Yggdroot/indentLine'}
+  -- use {'Yggdroot/indentLine'}
+  use "lukas-reineke/indent-blankline.nvim"
 
   -- tree
   use {
