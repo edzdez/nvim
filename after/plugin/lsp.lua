@@ -10,15 +10,29 @@ require("lsp-colors").setup({
 })
 
 local cmp = require('cmp')
+local cmp_sources = {
+  {name = 'path'},
+  {name = 'nvim_lsp'},
+  {name = 'luasnip', keyword_length = 2},
+}
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
   ['<C-Tab>'] = cmp.mapping.select_next_item(cmp_select),
   ['<Enter>'] = cmp.mapping.confirm({ select = true }),
   ["<C-space>"] = cmp.mapping.complete(),
+  -- ['<C-f>'] = cmp.mapping.luasnip_jump_forward(),
+  -- ['<C-b>'] = cmp.mapping.luasnip_jump_backward(),
 })
+
+require('luasnip.loaders.from_vscode').lazy_load()
+
 lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+  mapping = cmp_mappings,
+  sources = cmp_sources,
+  completion = {
+      completeopt = 'menu,menuone,noinsert,noselect,preview'
+  }
 })
 
 lsp.set_preferences({

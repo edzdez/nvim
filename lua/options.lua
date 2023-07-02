@@ -5,6 +5,7 @@ local opt = vim.opt  -- to set options
 
 -- colorscheme
 vim.cmd("colorscheme base16-tomorrow-night")
+vim.cmd("highlight MatchParen ctermbg=242 guibg=#373b41")
 
 -- misc
 opt.joinspaces = true

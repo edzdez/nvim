@@ -58,7 +58,10 @@ return require('packer').startup(function(use)
           -- Autocompletion
           {'hrsh7th/nvim-cmp'},     -- Required
           {'hrsh7th/cmp-nvim-lsp'}, -- Required
+          {'hrsh7th/cmp-path'},
           {'L3MON4D3/LuaSnip'},     -- Required
+          {'saadparwaiz1/cmp_luasnip'},
+          { "rafamadriz/friendly-snippets" },
       }
   }
   use {'folke/lsp-colors.nvim'}
@@ -67,6 +70,9 @@ return require('packer').startup(function(use)
   use {'simrat39/inlay-hints.nvim'}
   use {'p00f/clangd_extensions.nvim'}
   use {'hood/popui.nvim'}
+
+  -- LaTeX
+  use 'lervag/vimtex'
 
   -- error lens
   use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
