@@ -17,6 +17,11 @@ return require('packer').startup(function(use)
 
   -- Base 16 themes
   use {'RRethy/nvim-base16'}
+  -- use {'chriskempson/base16-vim'}
+
+  -- Gruvbox
+  use { "ellisonleao/gruvbox.nvim" }
+  -- use "sainnhe/gruvbox-material"
 
   -- treesitter
   use(

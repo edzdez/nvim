@@ -3,10 +3,6 @@ local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
 
--- colorscheme
-vim.cmd("colorscheme base16-tomorrow-night")
-vim.cmd("highlight MatchParen ctermbg=242 guibg=#373b41")
-
 -- misc
 opt.joinspaces = true
 opt.fileencoding = "utf-8"
@@ -70,4 +66,9 @@ g.vimwiki_list = {
         template_path = "~/.local/share/nvim/site/pack/packer/start/vimwiki/autoload/vimwiki",
     }
 }
+
+-- colorscheme
+-- vim.cmd("colorscheme base16-tomorrow-night")
+-- vim.cmd("highlight MatchParen ctermbg=242 guibg=#373b41")
+vim.cmd[[colorscheme gruvbox]]
 

@@ -9,6 +9,12 @@ require'nvim-treesitter.configs'.setup {
   -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
   auto_install = true,
 
+  -- Indentation based on treesitter for the = operator. NOTE: This is an experimental feature.
+  indent = {
+    enable = true
+  },
+
+
   highlight = {
     enable = true,
     disable = { "make" },
