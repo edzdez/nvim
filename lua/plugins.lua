@@ -75,6 +75,7 @@ return require('packer').startup(function(use)
   use {'simrat39/inlay-hints.nvim'}
   use {'p00f/clangd_extensions.nvim'}
   use {'hood/popui.nvim'}
+  use {'Julian/lean.nvim'}
 
   -- LaTeX
   use 'lervag/vimtex'

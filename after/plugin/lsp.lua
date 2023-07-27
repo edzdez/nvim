@@ -110,3 +110,10 @@ require('clangd_extensions').setup {
 vim.diagnostic.config({
     virtual_text = true
 })
+
+require('lean').setup{
+  abbreviations = { builtin = true },
+  lsp = { on_attach = attach },
+  lsp3 = { on_attach = attach },
+  mappings = true,
+}
