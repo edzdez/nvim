@@ -27,22 +27,22 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 
 require('luasnip.loaders.from_vscode').lazy_load()
 
-lsp.setup_nvim_cmp({
+cmp.setup({
   mapping = cmp_mappings,
   sources = cmp_sources,
   completion = {
       completeopt = 'menu,menuone,noinsert,noselect,preview'
+  },
+  experimental = {
+    ghost_text = true,
   }
 })
 
-lsp.set_preferences({
-    suggest_lsp_servers = false,
-    sign_icons = {
-        error = ' ',
-        warn = ' ',
-        hint = ' ',
-        info = ' '
-    }
+lsp.set_sign_icons({
+    error = ' ',
+    warn = ' ',
+    hint = ' ',
+    info = ' '
 })
 
 function attach(client, bufnr)
@@ -117,3 +117,11 @@ require('lean').setup{
   lsp3 = { on_attach = attach },
   mappings = true,
 }
+
+-- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+local kopts = {noremap = true, silent = true}
+vim.api.nvim_set_keymap('n', ' cx',
+    [[<Cmd>:lua vim.diagnostic.open_float(nil, {focus = false})<CR>]],
+    kopts)
+
