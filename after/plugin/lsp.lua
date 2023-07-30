@@ -25,7 +25,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   -- ['<C-b>'] = cmp.mapping.luasnip_jump_backward(),
 })
 
-require('luasnip.loaders.from_vscode').lazy_load()
+-- require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
   mapping = cmp_mappings,
