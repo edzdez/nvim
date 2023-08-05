@@ -1,7 +1,3 @@
-local lsp = require('lsp-zero')
-
-lsp.preset('recommended')
-
 require("lsp-colors").setup({
   Error = "#db4b4b",
   Warning = "#e0af68",
@@ -16,16 +12,16 @@ local cmp_sources = {
   {name = 'luasnip', keyword_length = 2},
 }
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
-local cmp_mappings = lsp.defaults.cmp_mappings({
+local cmp_mappings = {
   ['<C-S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
   ['<C-Tab>'] = cmp.mapping.select_next_item(cmp_select),
   ['<Enter>'] = cmp.mapping.confirm({ select = true }),
   ["<C-space>"] = cmp.mapping.complete(),
   -- ['<C-f>'] = cmp.mapping.luasnip_jump_forward(),
   -- ['<C-b>'] = cmp.mapping.luasnip_jump_backward(),
-})
+}
 
--- require('luasnip.loaders.from_vscode').lazy_load()
+require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
   mapping = cmp_mappings,
@@ -38,12 +34,12 @@ cmp.setup({
   }
 })
 
-lsp.set_sign_icons({
-    error = ' ',
-    warn = ' ',
-    hint = ' ',
-    info = ' '
-})
+-- lsp.set_sign_icons({
+--     error = ' ',
+--     warn = ' ',
+--     hint = ' ',
+--     info = ' '
+-- })
 
 function attach(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
@@ -70,8 +66,6 @@ function attach(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 end
 
-lsp.on_attach(attach)
-
 require "lsp_signature".on_attach({
   bind = true, -- This is mandatory, otherwise border config won't get registered.
   handler_opts = {
@@ -80,9 +74,10 @@ require "lsp_signature".on_attach({
   toggle_key = "<C-K>",
 }, bufnr)
 
-lsp.skip_server_setup({'rust_analyzer', 'clangd'})
-
-lsp.setup()
+local lspconfig = require('lspconfig')
+lspconfig.ocamllsp.setup({
+    on_attach = attach
+})
 
 local rust_tools = require('rust-tools')
 rust_tools.setup({
@@ -125,3 +120,15 @@ vim.api.nvim_set_keymap('n', ' cx',
     [[<Cmd>:lua vim.diagnostic.open_float(nil, {focus = false})<CR>]],
     kopts)
 
+require("mason-null-ls").setup({
+    ensure_installed = {
+        -- Opt to list sources here, when available in mason.
+    },
+    automatic_installation = false,
+    handlers = {},
+})
+require("null-ls").setup({
+    sources = {
+        -- Anything not supported by mason.
+    }
+})

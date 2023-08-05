@@ -46,29 +46,15 @@ return require('packer').startup(function(use)
   use {'tpope/vim-fugitive'}
 
   -- lsp
-  use {
-      'VonHeikemen/lsp-zero.nvim',
-      branch = 'v2.x',
-      requires = {
-          -- LSP Support
-          {'neovim/nvim-lspconfig'},             -- Required
-          {                                      -- Optional
-            'williamboman/mason.nvim',
-            run = function()
-              pcall(vim.cmd, 'MasonUpdate')
-            end,
-          },
-          {'williamboman/mason-lspconfig.nvim'}, -- Optional
-
-          -- Autocompletion
-          {'hrsh7th/nvim-cmp'},     -- Required
-          {'hrsh7th/cmp-nvim-lsp'}, -- Required
-          {'hrsh7th/cmp-path'},
-          {'L3MON4D3/LuaSnip'},     -- Required
-          {'saadparwaiz1/cmp_luasnip'},
-          { "rafamadriz/friendly-snippets" },
-      }
-  }
+  use {'neovim/nvim-lspconfig'}
+  use{'williamboman/mason.nvim'}
+  use{'williamboman/mason-lspconfig.nvim'}
+  use{'hrsh7th/nvim-cmp'}
+  use{'hrsh7th/cmp-nvim-lsp'}
+  use{'hrsh7th/cmp-path'}
+  use{'L3MON4D3/LuaSnip'}
+  use{'saadparwaiz1/cmp_luasnip'}
+  use{ "rafamadriz/friendly-snippets"}
   use {'folke/lsp-colors.nvim'}
   use { "ray-x/lsp_signature.nvim" }
   use {'simrat39/rust-tools.nvim'}
@@ -85,7 +71,8 @@ return require('packer').startup(function(use)
 
   -- Auto format tools
   use({ "sbdchd/neoformat", cmd = { "Neoformat" } })
-  use { 'mhartington/formatter.nvim' }
+  use("jay-babu/mason-null-ls.nvim")
+  use("jose-elias-alvarez/null-ls.nvim")
 
   -- show and trim trailing whitespaces
   use {'jdhao/whitespace.nvim', event = 'VimEnter'}
