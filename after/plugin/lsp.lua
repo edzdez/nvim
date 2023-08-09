@@ -62,7 +62,7 @@ cmp.setup({
 -- })
 
 function attach(client, bufnr)
-    local opts = {buffer = bufnr, remap = false}
+    local bufopts = {buffer = bufnr, remap = false}
 
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -88,6 +88,13 @@ function attach(client, bufnr)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+
+    vim.keymap.set('n', '<leader>bp', require'dap'.toggle_breakpoint, bufopts)
+    vim.keymap.set('n', '<leader>sO', require'dap'.step_over, bufopts)
+    vim.keymap.set('n', '<leader>si', require'dap'.step_into, bufopts)
+    vim.keymap.set('n', '<leader>so', require'dap'.step_out, bufopts)
+    vim.keymap.set('n', '<leader>sr', require'dap'.continue, bufopts)
+    vim.keymap.set('n', '<leader>ro', require'dap'.repl.open, bufopts)
 end
 
 require"lsp_signature".on_attach({

@@ -67,7 +67,10 @@ return require('packer').startup(function(use)
     use {'p00f/clangd_extensions.nvim'}
     use {'hood/popui.nvim'}
     use {'Julian/lean.nvim'}
+
+    -- dap
     use 'mfussenegger/nvim-dap'
+    use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}}
 
     -- LaTeX
     use 'lervag/vimtex'
