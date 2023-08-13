@@ -60,13 +60,25 @@ return require('packer').startup(function(use)
     use {'L3MON4D3/LuaSnip'}
     use {'saadparwaiz1/cmp_luasnip'}
     use {"rafamadriz/friendly-snippets"}
-    use {'folke/lsp-colors.nvim'}
     use {"ray-x/lsp_signature.nvim"}
     use {'simrat39/rust-tools.nvim'}
     use {'simrat39/inlay-hints.nvim'}
     use {'p00f/clangd_extensions.nvim'}
     use {'hood/popui.nvim'}
     use {'Julian/lean.nvim'}
+
+    -- surround
+    use {
+        'kylechui/nvim-surround',
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+    }
+
+    -- multicursor
+    use 'mg979/vim-visual-multi'
 
     -- dap
     use 'mfussenegger/nvim-dap'
