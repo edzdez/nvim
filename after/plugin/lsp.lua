@@ -1,50 +1,27 @@
 local cmp = require('cmp')
-local cmp_sources = {
-    {name = 'path'}, {name = 'nvim_lsp'}, {name = 'luasnip', keyword_length = 2}
-}
+local luasnip = require('luasnip')
 require('luasnip.loaders.from_vscode').lazy_load()
 
+local select_opts = { behavior = cmp.SelectBehavior.select }
+
+local cmp_sources = {
+    { name = 'path' }, { name = 'nvim_lsp' }, { name = 'luasnip', keyword_length = 2 }
+}
+
 cmp.setup({
-    mapping = {
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-                -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-                -- they way you will only jump inside the snippet region
-            else
-                fallback()
-            end
-        end, {"i", "s"}),
-
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            else
-                fallback()
-            end
-        end, {"i", "s"}),
-
-        ["<CR>"] = cmp.mapping({
-            i = function(fallback)
-                if cmp.visible() and cmp.get_active_entry() then
-                    cmp.confirm({
-                        behavior = cmp.ConfirmBehavior.Replace,
-                        select = false
-                    })
-                else
-                    fallback()
-                end
-            end,
-            s = cmp.mapping.confirm({select = true}),
-            c = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true
-            })
-        })
-    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<S-Tab>'] = cmp.mapping.select_prev_item(select_opts),
+        ['<Tab>'] = cmp.mapping.select_next_item(select_opts),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }) -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
     sources = cmp_sources,
-    completion = {completeopt = 'menu,menuone,noinsert,noselect,preview'},
-    experimental = {ghost_text = true}
+    completion = { completeopt = 'menu,menuone,noinsert,noselect,preview' },
+    experimental = { ghost_text = true },
+    snippet = { expand = function(args) luasnip.lsp_expand(args.body) end }
 })
 
 -- lsp.set_sign_icons({
@@ -55,7 +32,7 @@ cmp.setup({
 -- })
 
 function attach(client, bufnr)
-    local bufopts = {buffer = bufnr, remap = false}
+    local bufopts = { buffer = bufnr, remap = false }
 
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -65,15 +42,15 @@ function attach(client, bufnr)
     vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
 
     vim.keymap.set("i", "<C-k>", function() vim.lsp.buf.signature_help() end,
-                   opts)
+        opts)
     vim.keymap.set("n", "<leader>vd",
-                   function() vim.diagnostic.open_float() end, opts)
+        function() vim.diagnostic.open_float() end, opts)
 
     vim.keymap.set("n", "<leader>vws",
-                   function() vim.lsp.buf.workleader_symbol() end, opts)
+        function() vim.lsp.buf.workleader_symbol() end, opts)
     vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
     vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder,
-                   bufopts)
+        bufopts)
 
     vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
     vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
@@ -82,30 +59,30 @@ function attach(client, bufnr)
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 
-    vim.keymap.set('n', '<leader>bp', require'dap'.toggle_breakpoint, bufopts)
-    vim.keymap.set('n', '<leader>sO', require'dap'.step_over, bufopts)
-    vim.keymap.set('n', '<leader>si', require'dap'.step_into, bufopts)
-    vim.keymap.set('n', '<leader>so', require'dap'.step_out, bufopts)
-    vim.keymap.set('n', '<leader>sr', require'dap'.continue, bufopts)
-    vim.keymap.set('n', '<leader>ro', require'dap'.repl.open, bufopts)
+    vim.keymap.set('n', '<leader>bp', require 'dap'.toggle_breakpoint, bufopts)
+    vim.keymap.set('n', '<leader>sO', require 'dap'.step_over, bufopts)
+    vim.keymap.set('n', '<leader>si', require 'dap'.step_into, bufopts)
+    vim.keymap.set('n', '<leader>so', require 'dap'.step_out, bufopts)
+    vim.keymap.set('n', '<leader>sr', require 'dap'.continue, bufopts)
+    vim.keymap.set('n', '<leader>ro', require 'dap'.repl.open, bufopts)
 end
 
-require"lsp_signature".on_attach({
+require "lsp_signature".on_attach({
     bind = true, -- This is mandatory, otherwise border config won't get registered.
-    handler_opts = {border = "rounded"},
+    handler_opts = { border = "rounded" },
     toggle_key = "<C-K>"
 }, bufnr)
 
 require("mason").setup()
 require("mason-lspconfig").setup()
 local lspconfig = require('lspconfig')
-lspconfig.ocamllsp.setup({on_attach = attach})
-lspconfig.lua_ls.setup({on_attach = attach})
-lspconfig.texlab.setup({on_attach = attach})
-lspconfig.pyright.setup({on_attach = attach})
-lspconfig.dafny.setup({on_attach = attach})
-lspconfig.gopls.setup({on_attach = attach})
-lspconfig.elixirls.setup({on_attach = attach})
+lspconfig.ocamllsp.setup({ on_attach = attach })
+lspconfig.lua_ls.setup({ on_attach = attach })
+lspconfig.texlab.setup({ on_attach = attach })
+lspconfig.pyright.setup({ on_attach = attach })
+lspconfig.dafny.setup({ on_attach = attach })
+lspconfig.gopls.setup({ on_attach = attach })
+lspconfig.elixirls.setup({ on_attach = attach })
 lspconfig.clangd.setup({
     on_attach = function(client, bufnr)
         attach(client, bufnr)
@@ -125,10 +102,10 @@ rust_tools.setup({
             highlight = "Comment"
         }
     },
-    server = {on_attach = attach, standalone = true}
+    server = { on_attach = attach, standalone = true }
 })
 
-vim.diagnostic.config({virtual_text = true})
+vim.diagnostic.config({ virtual_text = true })
 require("clangd_extensions").setup({
     inlay_hints = {
         inline = vim.fn.has("nvim-0.10") == 1,
@@ -141,7 +118,7 @@ require("clangd_extensions").setup({
         -- not that this may cause  higher CPU usage.
         -- This option is only respected when only_current_line and
         -- autoSetHints both are true.
-        only_current_line_autocmd = {"CursorHold"},
+        only_current_line_autocmd = { "CursorHold" },
         -- whether to show parameter hints with the inlay hints or not
         show_parameter_hints = true,
         -- prefix for parameter hints
@@ -164,18 +141,18 @@ require("clangd_extensions").setup({
 })
 
 require('lean').setup {
-    abbreviations = {builtin = true},
-    lsp = {on_attach = attach},
-    lsp3 = {on_attach = attach},
+    abbreviations = { builtin = true },
+    lsp = { on_attach = attach },
+    lsp3 = { on_attach = attach },
     mappings = true
 }
 
 -- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
-local kopts = {noremap = true, silent = true}
+local kopts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap('n', ' cx',
-                        [[<Cmd>:lua vim.diagnostic.open_float(nil, {focus = false})<CR>]],
-                        kopts)
+    [[<Cmd>:lua vim.diagnostic.open_float(nil, {focus = false})<CR>]],
+    kopts)
 
 require("mason-null-ls").setup({
     ensure_installed = {
