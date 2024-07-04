@@ -83,6 +83,7 @@ lspconfig.pyright.setup({ on_attach = attach })
 lspconfig.dafny.setup({ on_attach = attach })
 lspconfig.gopls.setup({ on_attach = attach })
 lspconfig.elixirls.setup({ on_attach = attach })
+lspconfig.zls.setup({ on_attach = attach })
 lspconfig.clangd.setup({
     on_attach = function(client, bufnr)
         attach(client, bufnr)

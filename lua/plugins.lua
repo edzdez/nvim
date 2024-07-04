@@ -1,3 +1,4 @@
+-- TODO: oil
 local ensure_packer = function()
     local fn = vim.fn
     local install_path = fn.stdpath('data') ..
@@ -66,6 +67,7 @@ return require('packer').startup(function(use)
     use {'p00f/clangd_extensions.nvim'}
     use {'hood/popui.nvim'}
     use {'Julian/lean.nvim'}
+    use {'whonore/Coqtail'}
 
     -- surround
     use {
@@ -83,12 +85,14 @@ return require('packer').startup(function(use)
     -- dap
     use 'mfussenegger/nvim-dap'
     use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}}
+    use 'nvim-neotest/nvim-nio'
 
     -- LaTeX
     use 'lervag/vimtex'
 
     -- error lens
     use {"folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons"}
+    use {"folke/todo-comments.nvim"}
 
     -- Auto format tools
     use({"sbdchd/neoformat", cmd = {"Neoformat"}})
@@ -139,7 +143,12 @@ return require('packer').startup(function(use)
 
     -- indentline
     -- use {'Yggdroot/indentLine'}
-    use "lukas-reineke/indent-blankline.nvim"
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        -- FIXME: undo breaking change
+        commit = '3d08501caef2329aba5121b753e903904088f7e6'
+
+    }
 
     -- tree
     use {

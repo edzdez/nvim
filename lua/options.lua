@@ -1,7 +1,7 @@
-local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
-local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
-local g = vim.g      -- a table to access global variables
-local opt = vim.opt  -- to set options
+local cmd = vim.cmd -- to execute Vim commands e.g. cmd('pwd')
+local fn = vim.fn -- to call Vim functions e.g. fn.bufnr()
+local g = vim.g -- a table to access global variables
+local opt = vim.opt -- to set options
 
 -- misc
 opt.joinspaces = true
@@ -63,12 +63,12 @@ g.vimwiki_list = {
         syntax = 'markdown',
         ext = '.md',
         custom_wiki2html = '~/.local/bin/wiki2html.sh',
-        template_path = "~/.local/share/nvim/site/pack/packer/start/vimwiki/autoload/vimwiki",
+        template_path = "~/.local/share/nvim/site/pack/packer/start/vimwiki/autoload/vimwiki"
     }
 }
 
 -- colorscheme
 -- vim.cmd("colorscheme base16-tomorrow-night")
 -- vim.cmd("highlight MatchParen ctermbg=242 guibg=#373b41")
-vim.cmd[[colorscheme gruvbox]]
-
+vim.cmd [[colorscheme gruvbox]]
+vim.cmd [[ set rtp^="/home/ethan/.opam/default/share/ocp-indent/vim" ]]
