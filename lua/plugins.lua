@@ -96,8 +96,6 @@ return require('packer').startup(function(use)
 
     -- Auto format tools
     use({"sbdchd/neoformat", cmd = {"Neoformat"}})
-    use("jay-babu/mason-null-ls.nvim")
-    use("jose-elias-alvarez/null-ls.nvim")
 
     -- show and trim trailing whitespaces
     use {'jdhao/whitespace.nvim', event = 'VimEnter'}
@@ -150,13 +148,7 @@ return require('packer').startup(function(use)
 
     }
 
-    -- tree
-    use {
-        'nvim-tree/nvim-tree.lua',
-        requires = {
-            'nvim-tree/nvim-web-devicons' -- optional
-        }
-    }
+    use {"stevearc/oil.nvim"}
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
