@@ -1,8 +1,7 @@
--- TODO: oil
 local ensure_packer = function()
     local fn = vim.fn
     local install_path = fn.stdpath('data') ..
-                             '/site/pack/packer/start/packer.nvim'
+        '/site/pack/packer/start/packer.nvim'
     if fn.empty(fn.glob(install_path)) > 0 then
         fn.system({
             'git', 'clone', '--depth', '1',
@@ -21,21 +20,21 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- Base 16 themes
-    use {'RRethy/nvim-base16'}
+    use { 'RRethy/nvim-base16' }
     -- use {'chriskempson/base16-vim'}
 
     -- Gruvbox
-    use {"ellisonleao/gruvbox.nvim"}
+    use { "ellisonleao/gruvbox.nvim" }
     -- use "sainnhe/gruvbox-material"
 
     -- treesitter
-    use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-    use {'nvim-treesitter/playground'}
+    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+    use { 'nvim-treesitter/playground' }
 
     -- telescope
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/plenary.nvim'}}
+        requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
     -- tabs
@@ -46,28 +45,29 @@ return require('packer').startup(function(use)
     }
 
     -- undotree
-    use {'mbbill/undotree'}
+    use { 'mbbill/undotree' }
 
     -- vimfugitive
-    use {'tpope/vim-fugitive'}
+    use { 'tpope/vim-fugitive' }
 
     -- lsp
-    use {'neovim/nvim-lspconfig'}
-    use {'williamboman/mason.nvim'}
-    use {'williamboman/mason-lspconfig.nvim'}
-    use {'hrsh7th/nvim-cmp'}
-    use {'hrsh7th/cmp-nvim-lsp'}
-    use {'hrsh7th/cmp-path'}
-    use {'L3MON4D3/LuaSnip'}
-    use {'saadparwaiz1/cmp_luasnip'}
-    use {"rafamadriz/friendly-snippets"}
-    use {"ray-x/lsp_signature.nvim"}
-    use {'simrat39/rust-tools.nvim'}
-    use {'simrat39/inlay-hints.nvim'}
-    use {'p00f/clangd_extensions.nvim'}
-    use {'hood/popui.nvim'}
-    use {'Julian/lean.nvim'}
-    use {'whonore/Coqtail'}
+    use { 'neovim/nvim-lspconfig' }
+    use { 'williamboman/mason.nvim' }
+    use { 'williamboman/mason-lspconfig.nvim' }
+    use { 'hrsh7th/nvim-cmp' }
+    use { 'hrsh7th/cmp-nvim-lsp' }
+    use { 'hrsh7th/cmp-path' }
+    use { 'L3MON4D3/LuaSnip' }
+    use { 'saadparwaiz1/cmp_luasnip' }
+    use { "rafamadriz/friendly-snippets" }
+    use { "ray-x/lsp_signature.nvim" }
+    use { 'simrat39/rust-tools.nvim' }
+    use { 'simrat39/inlay-hints.nvim' }
+    use { 'p00f/clangd_extensions.nvim' }
+    use { 'hood/popui.nvim' }
+    use { 'Julian/lean.nvim' }
+    use { 'whonore/Coqtail' }
+    -- use { 'mrcjkb/haskell-tools.nvim' }
 
     -- surround
     use {
@@ -84,24 +84,24 @@ return require('packer').startup(function(use)
 
     -- dap
     use 'mfussenegger/nvim-dap'
-    use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}}
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
     use 'nvim-neotest/nvim-nio'
 
     -- LaTeX
     use 'lervag/vimtex'
 
     -- error lens
-    use {"folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons"}
-    use {"folke/todo-comments.nvim"}
+    use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
+    use { "folke/todo-comments.nvim" }
 
     -- Auto format tools
-    use({"sbdchd/neoformat", cmd = {"Neoformat"}})
+    use({ "sbdchd/neoformat", cmd = { "Neoformat" } })
 
     -- show and trim trailing whitespaces
-    use {'jdhao/whitespace.nvim', event = 'VimEnter'}
+    use { 'jdhao/whitespace.nvim', event = 'VimEnter' }
 
     -- colors!
-    use {'norcalli/nvim-colorizer.lua'}
+    use { 'norcalli/nvim-colorizer.lua' }
 
     -- which-key
     use {
@@ -125,19 +125,19 @@ return require('packer').startup(function(use)
     })
 
     -- Plugin to manipulate character pairs quickly
-    use({"machakann/vim-sandwich", event = "VimEnter"})
+    use({ "machakann/vim-sandwich", event = "VimEnter" })
 
     -- lualine
     use {
         'nvim-lualine/lualine.nvim',
-        requires = {'nvim-tree/nvim-web-devicons', opt = true}
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
 
     -- auto-close pairs
-    use({"Raimondi/delimitMate", event = "InsertEnter"})
+    use({ "Raimondi/delimitMate", event = "InsertEnter" })
 
     -- vimwiki
-    use {'vimwiki/vimwiki'}
+    use { 'vimwiki/vimwiki' }
 
     -- indentline
     -- use {'Yggdroot/indentLine'}
@@ -148,7 +148,7 @@ return require('packer').startup(function(use)
 
     }
 
-    use {"stevearc/oil.nvim"}
+    use { "stevearc/oil.nvim" }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
