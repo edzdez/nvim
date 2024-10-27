@@ -1,4 +1,2 @@
-require("options")
-require("remap")
-require("plugins")
-require("autocommands")
+require("config.options")
+require("config.lazy")
