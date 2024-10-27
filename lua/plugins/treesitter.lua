@@ -1,23 +1,17 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  "nvim-treesitter/playground",
-  event = { "BufReadPre", "BufNewFile" },
+  tag = "v0.9.3",
+  dependecies = {
+    "nvim-treesitter/playground",
+  },
   build = ":TSUpdate",
   config = function()
-    local treesitter = require("treesitter.configs")
+    local configs = require("nvim-treesitter.configs")
 
-    treesitter.setup({
-      ensure_installed = "maintained",
+    configs.setup({
       sync_install = false,
-      auto_install = true,
-
-      indent = {
-        enable = true,
-      },
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
+      highlight = { enable = true },
+      indent = { enable = true },
     })
   end,
 }
