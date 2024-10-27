@@ -7,7 +7,12 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.showmode = false -- disable mode above statusline
 vim.opt.mouse = "a"
 vim.opt.signcolumn = "yes" -- diagnostics next to line
-vim.opt.pumheight = 50 -- autocomplete menu height
+vim.opt.pumheight = 10 -- autocomplete menu height
+vim.opt.foldlevel = 99
+vim.cmd([[
+  au BufWinLeave * silent mkview
+  au BufWinEnter * silent loadview
+]])
 
 -- tabs
 vim.opt.expandtab = true

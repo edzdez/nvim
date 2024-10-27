@@ -9,5 +9,6 @@ return {
     vim.cmd("hi GitSignsChange guifg=#fe8019 guibg=#3c3836")
     vim.cmd("hi GitSignsDelete guifg=#fb4934 guibg=#3c3836")
     vim.cmd("hi GitSignsUntracked guifg=#b8bb26 guibg=#3c3836")
+    vim.cmd("hi! link GitSignsCurrentLineBlame Comment")
   end,
 }
