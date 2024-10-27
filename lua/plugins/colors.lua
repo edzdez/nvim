@@ -27,6 +27,5 @@ return {
     })
 
     vim.cmd("colorscheme gruvbox")
-    vim.cmd("highlight clear SignColumn")
   end,
 }
