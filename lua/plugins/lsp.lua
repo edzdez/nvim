@@ -1,9 +1,31 @@
+function split(str, sep)
+  local result = {}
+  local pattern = string.format("([^%s]+)", sep) -- Create a pattern to match segments
+  for match in string.gmatch(str, pattern) do
+    table.insert(result, match) -- Insert each match into the result table
+  end
+  return result
+end
+
 function attach(client, bufnr)
   require("lsp_signature").on_attach({
     bind = true, -- This is mandatory, otherwise border config won't get registered.
     handler_opts = { border = "single" },
     toggle_key = "<C-K>",
   }, bufnr)
+
+  vim.keymap.set("n", "<C-F8>", function()
+    require("dap").toggle_breakpoint()
+  end)
+  vim.keymap.set("n", "<F9>", function()
+    require("dap").continue()
+  end)
+  vim.keymap.set("n", "<F7>", function()
+    require("dap").step_into()
+  end)
+  vim.keymap.set("n", "<F8>", function()
+    require("dap").step_over()
+  end)
 
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "Go to Declaration (LSP)" })
   vim.keymap.set("n", "gd", function()
@@ -43,8 +65,11 @@ return {
     "p00f/clangd_extensions.nvim",
     "simrat39/rust-tools.nvim",
     "simrat39/inlay-hints.nvim",
-    "Julian/lean.nvim",
+    -- "Julian/lean.nvim",
     "whonore/Coqtail",
+    "mfussenegger/nvim-dap",
+    "nvim-neotest/nvim-nio",
+    "rcarriga/nvim-dap-ui",
   },
   config = function()
     local lsp = require("lspconfig")
@@ -73,6 +98,8 @@ return {
         inlay_hints = {
           auto = true,
           only_current_line = false,
+          parameter_hints_prefix = "⊶ ",
+          other_hints_prefix = "⊷ ",
           show_parameter_hints = true,
           highlight = "Comment",
         },
@@ -115,11 +142,65 @@ return {
       },
     })
 
-    require("lean").setup({
-      abbreviations = { builtin = true },
-      lsp = { on_attach = attach },
-      lsp3 = { on_attach = attach },
-      mappings = true,
-    })
+    -- require("lean").setup({
+    --   abbreviations = { builtin = true },
+    --   lsp = { on_attach = attach },
+    --   lsp3 = { on_attach = attach },
+    --   mappings = true,
+    -- })
+
+    local dap = require("dap")
+    local dapui = require("dapui")
+
+    dapui.setup()
+
+    local dap, dapui = require("dap"), require("dapui")
+    dap.listeners.before.attach.dapui_config = function()
+      dapui.open()
+    end
+    dap.listeners.before.launch.dapui_config = function()
+      dapui.open()
+    end
+    dap.listeners.before.event_terminated.dapui_config = function()
+      dapui.close()
+    end
+    dap.listeners.before.event_exited.dapui_config = function()
+      dapui.close()
+    end
+
+    dap.adapters.gdb = {
+      type = "executable",
+      command = "gdb",
+      args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
+    }
+
+    dap.configurations.c = {
+      {
+        name = "Launch",
+        type = "gdb",
+        request = "launch",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        cwd = "${workspaceFolder}",
+        stopAtBeginningOfMainSubprogram = false,
+      },
+      {
+        name = "Launch (with args)",
+        type = "gdb",
+        request = "launch",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        args = function()
+          return split(vim.fn.input("Arguments: "), " ")
+        end,
+        cwd = "${workspaceFolder}",
+        stopAtBeginningOfMainSubprogram = false,
+      },
+    }
+
+    dap.configurations.cpp = dap.configurations.c
+    dap.configurations.rust = dap.configurations.c
   end,
 }

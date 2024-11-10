@@ -12,7 +12,7 @@ return {
       },
       highlights = {
         indicator_selected = {
-          fg = "#458588",
+          fg = "#83a59a",
         },
       },
     })

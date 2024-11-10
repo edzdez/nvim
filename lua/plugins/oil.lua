@@ -1,13 +1,16 @@
 return {
   "stevearc/oil.nvim",
+  lazy = false,
   keys = {
     {
       "<leader>fe",
       "<cmd>Oil<cr>",
-      desc = "Files (Oil)"
+      desc = "Files (Oil)",
     },
   },
   config = function()
-    require("oil").setup()
-  end
+    require("oil").setup({
+      default_file_explorer = true,
+    })
+  end,
 }

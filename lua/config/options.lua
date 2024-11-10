@@ -10,8 +10,8 @@ vim.opt.signcolumn = "yes" -- diagnostics next to line
 vim.opt.pumheight = 10 -- autocomplete menu height
 vim.opt.foldlevel = 99
 vim.cmd([[
-  au BufWinLeave * silent mkview
-  au BufWinEnter * silent loadview
+  au BufWinLeave ?* silent! mkview
+  au BufWinEnter ?* silent! loadview
 ]])
 
 -- tabs
