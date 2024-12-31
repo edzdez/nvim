@@ -65,7 +65,7 @@ return {
     "p00f/clangd_extensions.nvim",
     "simrat39/rust-tools.nvim",
     "simrat39/inlay-hints.nvim",
-    -- "Julian/lean.nvim",
+    "Julian/lean.nvim",
     "whonore/Coqtail",
     "mfussenegger/nvim-dap",
     "nvim-neotest/nvim-nio",
@@ -142,12 +142,12 @@ return {
       },
     })
 
-    -- require("lean").setup({
-    --   abbreviations = { builtin = true },
-    --   lsp = { on_attach = attach },
-    --   lsp3 = { on_attach = attach },
-    --   mappings = true,
-    -- })
+    require("lean").setup({
+      abbreviations = { builtin = true },
+      lsp = { on_attach = attach },
+      lsp3 = { on_attach = attach },
+      mappings = true,
+    })
 
     local dap = require("dap")
     local dapui = require("dapui")

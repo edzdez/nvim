@@ -7,13 +7,27 @@ return {
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
     "L3MON4D3/LuaSnip",
-    "rafamadriz/friendly-snippets",
+    -- "rafamadriz/friendly-snippets",
     "saadparwaiz1/cmp_luasnip",
   },
   opts = function(_, opts)
     local cmp = require("cmp")
     local luasnip = require("luasnip")
     require("luasnip.loaders.from_vscode").lazy_load()
+    require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
+
+    vim.keymap.set("i", "<C-L>", function()
+      luasnip.jump(1)
+    end, { silent = true })
+    vim.keymap.set("i", "<C-H>", function()
+      luasnip.jump(-1)
+    end, { silent = true })
+    vim.keymap.set("n", "<Tab>", function()
+      luasnip.jump(1)
+    end, { silent = true })
+    vim.keymap.set("i", "<S-Tab>", function()
+      luasnip.jump(-1)
+    end, { silent = true })
 
     cmp.setup({
       sources = {
