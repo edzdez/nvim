@@ -9,6 +9,8 @@ return {
     "L3MON4D3/LuaSnip",
     -- "rafamadriz/friendly-snippets",
     "saadparwaiz1/cmp_luasnip",
+    -- "nvim-tree/nvim-web-devicons",
+    -- "onsails/lspkind.nvim",
   },
   opts = function(_, opts)
     local cmp = require("cmp")
@@ -52,6 +54,14 @@ return {
         ["<Tab>"] = cmp.mapping.select_next_item(select_opts),
         ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       }),
+      window = {
+        completion = cmp.config.window.bordered({
+          winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:PmenuSel,Search:None",
+        }),
+        documentation = cmp.config.window.bordered({
+          winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:PmenuSel,Search:None",
+        }),
+      },
     })
     --
     -- `/` cmdline setup.

@@ -83,6 +83,7 @@ return {
     lsp.gopls.setup({ on_attach = attach })
     lsp.elixirls.setup({ on_attach = attach })
     lsp.zls.setup({ on_attach = attach })
+    lsp.cmake.setup({ on_attach = attach })
     lsp.clangd.setup({
       on_attach = function(client, bufnr)
         attach(client, bufnr)
