@@ -156,7 +156,7 @@ return {
     fmta(
       [[
       \begin{enumerate}
-          <>
+          \item <>
       \end{enumerate}
       ]],
       { i(1) }
@@ -167,7 +167,7 @@ return {
     fmta(
       [[
       \begin{itemize}
-          <>
+          \item <>
       \end{itemize}
       ]],
       { i(1) }
@@ -178,7 +178,7 @@ return {
     fmta(
       [[
       \begin{enumerate}[label=\bfalph]
-          <>
+          \item <>
       \end{enumerate}
       ]],
       { i(1) }

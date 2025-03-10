@@ -81,7 +81,7 @@ return {
     lsp.texlab.setup({ on_attach = attach })
     lsp.pyright.setup({ on_attach = attach })
     lsp.gopls.setup({ on_attach = attach })
-    lsp.elixirls.setup({ on_attach = attach })
+    lsp.elixirls.setup({ on_attach = attach, cmd = { "/home/ethan/opt/elixirls/language_server.sh" } })
     lsp.zls.setup({ on_attach = attach })
     lsp.cmake.setup({ on_attach = attach })
     lsp.clangd.setup({
